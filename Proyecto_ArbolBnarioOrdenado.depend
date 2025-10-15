@@ -1,0 +1,30 @@
+# depslib dependency file v1.0
+1760489120 source:c:\users\omar\documents\codeblock_ws\proyecto_arbolbnarioordenado\main.cpp
+	<iostream>
+	"Fila.h"
+	"ArbolBinarioOrdenado.h"
+
+1759883711 source:c:\users\omar\documents\codeblock_ws\proyecto_arbolbnarioordenado\src\nodoarbolbin.cpp
+	"NodoArbolBin.h"
+
+1760054865 c:\users\omar\documents\codeblock_ws\proyecto_arbolbnarioordenado\include\nodoarbolbin.h
+	<iostream>
+
+1759883711 source:c:\users\omar\documents\codeblock_ws\proyecto_arbolbnarioordenado\src\arbolbinarioordenado.cpp
+	"ArbolBinarioOrdenado.h"
+
+1760489169 c:\users\omar\documents\codeblock_ws\proyecto_arbolbnarioordenado\include\arbolbinarioordenado.h
+	"NodoArbolBin.h"
+	"Fila.h"
+
+1760398836 c:\users\omar\documents\codeblock_ws\proyecto_arbolbnarioordenado\include\fila.h
+	<iostream>
+	<new>
+	"NodoLLS.h"
+
+1760399442 c:\users\omar\documents\codeblock_ws\proyecto_arbolbnarioordenado\include\nodolls.h
+	<iostream>
+
+1760399133 source:c:\users\omar\documents\codeblock_ws\proyecto_arbolbnarioordenado\src\fila.cpp
+	"Fila.h"
+
