@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1760489120 source:c:\users\omar\documents\codeblock_ws\proyecto_arbolbnarioordenado\main.cpp
+1760659765 source:c:\users\omar\documents\codeblock_ws\proyecto_arbolbnarioordenado\main.cpp
 	<iostream>
 	"Fila.h"
 	"ArbolBinarioOrdenado.h"
@@ -13,7 +13,7 @@
 1759883711 source:c:\users\omar\documents\codeblock_ws\proyecto_arbolbnarioordenado\src\arbolbinarioordenado.cpp
 	"ArbolBinarioOrdenado.h"
 
-1760489169 c:\users\omar\documents\codeblock_ws\proyecto_arbolbnarioordenado\include\arbolbinarioordenado.h
+1760659809 c:\users\omar\documents\codeblock_ws\proyecto_arbolbnarioordenado\include\arbolbinarioordenado.h
 	"NodoArbolBin.h"
 	"Fila.h"
 

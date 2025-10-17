@@ -29,6 +29,18 @@ int main()
    arbol.PostOrden();
 
 
+   arbol.Vaciar();
+   arbol.Agregar(6);
+   arbol.Agregar(9);
+   arbol.Agregar(3);
+   arbol.Agregar(7);
+
+    cout <<endl <<"REcorrido en orden:" <<endl;
+   arbol.EnOrden();
+
+
+
+
 
 
 

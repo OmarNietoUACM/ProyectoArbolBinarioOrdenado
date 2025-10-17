@@ -14,10 +14,11 @@ class ArbolBinarioOrdenado
         ArbolBinarioOrdenado();
 
         void Agregar(T valor);
-        /*
-        void Eliminar(T info);
-        */
 
+        void Eliminar(T info);
+
+
+        NodoArbolBin<T> *BuscarNodo(T valor);
         T *Buscar(T valor);
         T *BuscarRecursivo(T valor);
         T *BuscarRecursivo(T valor,  NodoArbolBin<T> *pNodo);
@@ -41,10 +42,15 @@ class ArbolBinarioOrdenado
         void RecorrerLRV(NodoArbolBin<T> *nodo);
 
 
+        //TODO: Falta el método para vaciar el arbol
+        void Vaciar();
+        void Vaciar(NodoArbolBin<T> *nodo);
+
 
         virtual ~ArbolBinarioOrdenado();
 private:
         void Visitar(NodoArbolBin<T> *nodo);
+        void BorrarPorFusion(NodoArbolBin<T> *nodo);
 };
 
 template <class T>
@@ -208,8 +214,12 @@ void ArbolBinarioOrdenado<T>::Visitar(NodoArbolBin<T> *nodo)
 template <class T>
 T *ArbolBinarioOrdenado<T>::Buscar(T valor)
 {
-    NodoArbolBin<T> *nodo = pRaiz;
 
+    NodoArbolBin<T> *nodo = BuscarNodo(valor);
+    if (nodo != NULL) return nodo->info;
+    return NULL;
+
+    /*
     while (nodo != NULL)
     {
         if (valor == nodo->info)
@@ -219,9 +229,29 @@ T *ArbolBinarioOrdenado<T>::Buscar(T valor)
         else
             nodo = nodo->pDer;
     }
+
     return NULL;
+    */
 }
 
+
+
+template <class T>
+NodoArbolBin<T> *ArbolBinarioOrdenado<T>::BuscarNodo(T valor)
+{
+     NodoArbolBin<T> *nodo = pRaiz;
+
+    while (nodo != NULL)
+    {
+        if (valor == nodo->info)
+            return nodo;
+        if (valor <  nodo->info)
+            nodo = nodo->pIzq;
+        else
+            nodo = nodo->pDer;
+    }
+    return NULL;
+}
 
 template <class T>
 T *ArbolBinarioOrdenado<T>::BuscarRecursivo(T valor)
@@ -238,10 +268,77 @@ T *ArbolBinarioOrdenado<T>::BuscarRecursivo(T valor,  NodoArbolBin<T> *pNodo)
     else return BuscarRecursivo(valor, pNodo->pDer);
 }
 
+
+
+template <class T>
+void ArbolBinarioOrdenado<T>::Eliminar(T valor)
+{
+    //Buscar al nodo a eliminar
+    NodoArbolBin<T> *nodo = pRaiz;
+    NodoArbolBin<T> *prev = NULL, *q = NULL;
+    bool encontrado = false;
+
+    while (nodo != NULL && !encontrado)
+    {
+        if (valor == nodo->info)
+            encontrado = true;
+        else if (valor <  nodo->info)
+        {
+            prev = nodo;
+            nodo = nodo->pIzq;
+        }
+        else
+        {
+            prev = nodo;
+            nodo = nodo->pDer;
+        }
+    }
+
+    //Si no se encontró el valor a eliminar termina
+    if (nodo == NULL) return;
+
+    //Eliminar
+    //1 Cuando es un nodo hoja
+    //2. Cuando solo tiene un hijo (izq o derecho)
+    //3. Cuando tiene dons hijos
+
+
+
+}
+
+
+template <class T>
+void ArbolBinarioOrdenado<T>::BorrarPorFusion(NodoArbolBin<T> *nodo)
+{
+
+
+}
+
+template <class T>
+void ArbolBinarioOrdenado<T>::Vaciar()
+{
+    Vaciar(pRaiz);
+    pRaiz = NULL;
+}
+
+template <class T>
+void ArbolBinarioOrdenado<T>::Vaciar(NodoArbolBin<T> *nodo)
+{
+    if (nodo == NULL) return;
+    if(nodo->pIzq != NULL)
+        Vaciar(nodo->pIzq);
+    if(nodo->pDer != NULL)
+        Vaciar(nodo->pDer);
+    delete nodo;
+}
+
+
+
+//DEstructor
 template <class T>
 ArbolBinarioOrdenado<T>::~ArbolBinarioOrdenado()
 {
-    //dtor
+   Vaciar();
 }
 
 
