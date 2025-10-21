@@ -11,7 +11,8 @@ int main()
     ArbolBinarioOrdenado<int> arbol;
 
     arbol.Agregar(30);
-    arbol.Agregar(15);
+    arbol.Agregar(65);
+    arbol.Agregar(35);
     arbol.Agregar(29);
     arbol.Agregar(5);
     arbol.Agregar(20);
@@ -21,12 +22,22 @@ int main()
 
    // arbol.RecorridoAmplitudArribaAbajoDerIzq();
 
-   cout <<"REcorrido en PreOrden:" <<endl;
-   arbol.Preorden();
-   cout <<endl <<"REcorrido en orden:" <<endl;
-   arbol.EnOrden();
+    cout <<"REcorrido en PreOrden:" <<endl;
+    arbol.Preorden();
+    cout <<endl <<"REcorrido en orden:" <<endl;
+    arbol.EnOrden();
     cout <<endl <<"REcorrido en PostOrden:" <<endl;
-   arbol.PostOrden();
+    arbol.PostOrden();
+
+    arbol.BorrarPorFusion(30);
+
+    cout <<"\nBorrar 50 por fusion:" <<endl;
+    cout <<"REcorrido en PreOrden:" <<endl;
+    arbol.Preorden();
+    cout <<endl <<"REcorrido en orden:" <<endl;
+    arbol.EnOrden();
+    cout <<endl <<"REcorrido en PostOrden:" <<endl;
+    arbol.PostOrden();
 
 
    arbol.Vaciar();

@@ -41,8 +41,10 @@ class ArbolBinarioOrdenado
         void PostOrden();
         void RecorrerLRV(NodoArbolBin<T> *nodo);
 
+        void BorrarPorFusion(T valor);
 
-        //TODO: Falta el método para vaciar el arbol
+
+
         void Vaciar();
         void Vaciar(NodoArbolBin<T> *nodo);
 
@@ -50,7 +52,7 @@ class ArbolBinarioOrdenado
         virtual ~ArbolBinarioOrdenado();
 private:
         void Visitar(NodoArbolBin<T> *nodo);
-        void BorrarPorFusion(NodoArbolBin<T> *nodo);
+
 };
 
 template <class T>
@@ -271,7 +273,7 @@ T *ArbolBinarioOrdenado<T>::BuscarRecursivo(T valor,  NodoArbolBin<T> *pNodo)
 
 
 template <class T>
-void ArbolBinarioOrdenado<T>::Eliminar(T valor)
+void ArbolBinarioOrdenado<T>::BorrarPorFusion(T valor)
 {
     //Buscar al nodo a eliminar
     NodoArbolBin<T> *nodo = pRaiz;
@@ -299,20 +301,60 @@ void ArbolBinarioOrdenado<T>::Eliminar(T valor)
 
     //Eliminar
     //1 Cuando es un nodo hoja
+    if (nodo->pIzq == NULL && nodo->pDer == NULL)
+    {
+        if (prev == NULL) //Es el nodo daiz
+            pRaiz = NULL;
+        else if (prev->pIzq == nodo)
+            prev->pIzq = NULL;
+        else //if (prev->pDer == nodo)
+            prev->pDer = NULL;
+        delete nodo;
+    }
     //2. Cuando solo tiene un hijo (izq o derecho)
-    //3. Cuando tiene dons hijos
-
-
+    else if (nodo->pDer == NULL ) //Solo tiene un hijo izquierdao
+    {
+        if (prev == NULL) //Es el nodo daiz
+            pRaiz = nodo->pIzq;
+        else if (prev->pIzq == nodo)
+            prev->pIzq = nodo->pIzq ;
+        else //if (prev->pDer == nodo)
+            prev->pDer = nodo->pIzq ;
+        delete nodo;
+    }
+    else if (nodo->pIzq == NULL ) //Solo tiene un hijo derecho
+    {
+        if (prev == NULL) //Es el nodo daiz
+            pRaiz = nodo->pDer;
+        else if (prev->pIzq == nodo)
+            prev->pIzq = nodo->pDer ;
+        else //if (prev->pDer == nodo)
+            prev->pDer = nodo->pDer ;
+        delete nodo;
+    }
+    else {
+        //3. Cuando tiene ambos hijos
+        //3.1 buscar el nodo estremo derecho del subárbol izquierdo del nodo a eliminar
+        q = nodo->pIzq;
+        while(q->pDer != NULL)
+        {
+            q = q->pDer;
+        }
+        //3.2 El nodo q tomara como  hijo derecho el subarbol derecho del nodo a eliminar
+        q->pDer = nodo->pDer;
+        //3.3 El nodo abuelo tomara como hijo al subarbol izquierdo del nodo a eliminar
+        if (prev == NULL) //Es el nodo daiz
+            pRaiz = nodo->pIzq;
+        else if (prev->pIzq == nodo)
+            prev->pIzq = nodo->pIzq ;
+        else //if (prev->pDer == nodo)
+            prev->pDer = nodo->pIzq;
+        delete nodo;
+    }
 
 }
 
 
-template <class T>
-void ArbolBinarioOrdenado<T>::BorrarPorFusion(NodoArbolBin<T> *nodo)
-{
-
-
-}
 
 template <class T>
 void ArbolBinarioOrdenado<T>::Vaciar()
